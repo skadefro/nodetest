@@ -174,7 +174,7 @@ const fs = require('fs');
             nextrun.setSeconds(nextrun.getSeconds() + 60);
             nextrun = undefined;
             let files = [];
-            files.push("../testfile.csv");
+            files.push("testfile.csv");
             let push_workitem_result = client.push_workitem({ wiq: "rustqueue", name: "node test", nextrun, files});
             console.log("push_workitem success", push_workitem_result);
 
