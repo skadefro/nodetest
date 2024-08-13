@@ -40,7 +40,7 @@ const fs = require('fs');
         if (signin_result.success) {
             client.log("signed in" + signin_result.success);
 
-            const query_result = await client.query_async({ collectionname: 'entities', query: '{}', projection: '{"name":1}'});
+            const query_result = await client.query({ collectionname: 'entities', query: '{}', projection: '{"name":1}'});
             console.log("Got", query_result.length, "results");
             
 
