@@ -1,0 +1,16 @@
+{
+  "name": "nodetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "updatedev": "npm uninstall openiap && npm install ../openiap/node/openiap-0.0.2.tgz",
+    "update": "npm uninstall openiap && npm install openiap"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openiap": "^0.0.2"
+  }
+}
