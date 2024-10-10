@@ -4,13 +4,13 @@
   "description": "",
   "main": "test.js",
   "scripts": {
-    "updatedev": "npm uninstall openiap && npm install ../openiap/node/openiap-0.0.3.tgz",
+    "updatedev": "npm uninstall openiap && npm install ../openiap/node/openiap-0.0.5.tgz",
     "update": "npm uninstall openiap && npm install openiap"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "openiap": "^0.0.4"
+    "openiap": "^0.0.5"
   }
 }

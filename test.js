@@ -4,6 +4,7 @@ const fs = require('fs');
     let _int = setInterval(() => { 
         // console.log("Event loop is running"); 
     }, 200);
+    const client = new Client();
     try {
         const test_async = true;
         const test_sync = true;
@@ -11,12 +12,14 @@ const fs = require('fs');
         const test_multiple_workitems = true;
         const test_message_queue = true;
         const test_exchange = true;
+        const test_off_client_event = false;
 
         const url = '';
-        const client = new Client();
         // client.enable_tracing("openiap=debug", "close");
         // client.enable_tracing("openiap=trace", "new");
         client.enable_tracing("openiap=info", "");
+
+
 
         let filepath = 'testfile.csv';
         if (!fs.existsSync(filepath)) {
@@ -30,6 +33,11 @@ const fs = require('fs');
         } else {
             client.connect(url);
         }
+        let eventid = client.on_client_event((event) => {
+            console.log("client event", event);
+        });
+
+
         client.info("connect completed, now call signin() again")
         if(test_async) {
             const signin_result2 = await client.signin_async();
@@ -45,11 +53,16 @@ const fs = require('fs');
         if (signin_result.success) {
             client.info("signed in", signin_result.success);
 
-            if(test_async) {
+
+            if(test_off_client_event) {
+                client.off_client_event(eventid);
+            }
+
+            if(test_sync) {
                 for (y = 0; y < 1; y++) {
-                    for (let i = 0; i < 11; i++) {
+                    for (let i = 0; i < 15; i++) {
                         const query_result = client.query({ collectionname: 'entities', query: '{}', projection: '{"name":1}', orderby: '{}', queryas: '', explain: false, skip: 0, top: 0 });
-                        console.log("Got", query_result.length, "results");
+                        console.log("query.sync.Got", query_result.length, "results");
                     }
                 }
             }
@@ -59,6 +72,7 @@ const fs = require('fs');
                     for(let i = 0; i < 15; i++) {
                         promises.push(client.query_async({ collectionname: 'entities', query: '{}', projection: '{"name":1}', orderby: '{}', queryas: '', explain: false, skip: 0, top: 0 }));
                     }
+                    console.log("query_async, wait for reply");
                     client.info(
                         (await Promise.all(promises)).map(result => result.length)
                     );
@@ -287,11 +301,6 @@ const fs = require('fs');
                 console.log("exchange event loop done");
                 client.unregister_queue(queuename);            
             }
-
-            client.info("*********************************")
-            client.info("done, free client");
-            client.info("*********************************")
-            client.free();
         } else {
             client.info("signed failed", signin_result.error);
         }
@@ -303,5 +312,11 @@ const fs = require('fs');
         }
     } finally {
         clearInterval(_int);
+        if(client) {
+            client.info("*********************************")
+            client.info("done, free client");
+            client.info("*********************************")
+            client.free();
+        }
     }
 })();
