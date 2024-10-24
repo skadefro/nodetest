@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "openiap": "^0.0.5"
+    "openiap": "^0.0.9"
   }
 }
