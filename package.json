@@ -1,16 +1,22 @@
 {
-  "name": "nodetest",
-  "version": "1.0.0",
-  "description": "",
-  "main": "test.js",
-  "scripts": {
-    "updatedev": "npm uninstall openiap && npm install ../openiap/node/openiap-0.0.5.tgz",
-    "update": "npm uninstall openiap && npm install openiap"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "openiap": "^0.0.10"
-  }
+    "name": "nodetest",
+    "version": "1.0.4",
+    "description": "",
+    "main": "cli.js",
+    "scripts": {
+        "updatedev": "npm uninstall openiap && npm install ../openiap/node/openiap-0.0.12.tgz",
+        "update": "npm uninstall openiap && npm install openiap"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "openiap": {
+        "language": "nodejs",
+        "typescript": false,
+        "daemon": true,
+        "chromium": false
+    },
+    "dependencies": {
+        "openiap": "^0.0.17"
+    }
 }
