@@ -1,6 +1,6 @@
 {
     "name": "nodetest",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "",
     "main": "cli.js",
     "scripts": {
@@ -17,6 +17,6 @@
         "chromium": false
     },
     "dependencies": {
-        "openiap": "^0.0.17"
+        "openiap": "^0.0.21"
     }
 }

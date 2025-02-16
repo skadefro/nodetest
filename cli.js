@@ -76,7 +76,7 @@ async function doit() {
     });
 
     console.log('? for help');
-    let input = "bum";
+    let input = "";
     // client.enable_tracing("openiap=trace", "new");
     // client.enable_tracing("openiap=debug", "new");
     client.enable_tracing("openiap=info", "");
@@ -111,6 +111,11 @@ async function doit() {
         console.log("loop completed");
     }
 
+    // Simple check to see if we are running inside a container, then run the st_func
+    if(process.env.oidc_config != null & process.env.oidc_config != "") {
+        input = 'st';
+    }
+
     try {
         while (input.toLowerCase() !== 'quit') {
             switch (input.toLowerCase()) {
@@ -140,7 +145,6 @@ async function doit() {
                     
                     break;
                 case 'st':
-                case 'bum':
                     input = '';
                     if(do_st_func === true) {
                         do_st_func = false;
