@@ -4,8 +4,7 @@
     "description": "",
     "main": "cli.js",
     "scripts": {
-        "updatedev": "npm uninstall openiap && npm install ../openiap/node/openiap-0.0.12.tgz",
-        "update": "npm uninstall openiap && npm install openiap"
+        "updateapi": "npm uninstall openiap && npm install openiap"
     },
     "keywords": [],
     "author": "",
@@ -17,6 +16,6 @@
         "chromium": false
     },
     "dependencies": {
-        "openiap": "^0.0.21"
+        "openiap": "0.0.26"
     }
 }
