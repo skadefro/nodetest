@@ -16,6 +16,6 @@
         "chromium": false
     },
     "dependencies": {
-        "openiap": "0.0.26"
+        "openiap": "^0.0.28"
     }
 }
